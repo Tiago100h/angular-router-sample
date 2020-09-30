@@ -25,4 +25,14 @@ export class CrisisService {
       map((crises: Crisis[]) => crises.find(crisis => crisis.id === +id))
     );
   }
+
+  addCrisis(name: string) {
+    name = name.trim();
+    if (name) {
+      const crisis = { id: CrisisService.nextCrisisId++, name };
+      CRISES.push(crisis);
+      this.crises$.next(CRISES);
+    }
+  }
+  
 }
